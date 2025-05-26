@@ -6,6 +6,7 @@ public class TesteConexao {
     public static void main(String[] args) {
         Conexao conexao = new Conexao();
         Connection con = conexao.getConexao();
+
         if(con != null){
             System.out.println("Conexao estabelecida com sucesso!");
 
