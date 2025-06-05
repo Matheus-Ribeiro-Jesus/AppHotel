@@ -1,5 +1,7 @@
 package utils;
 
+import dao.*;
+
 import java.sql.Connection;
 
 public class TesteConexao {
@@ -9,8 +11,24 @@ public class TesteConexao {
 
         if(con != null){
             System.out.println("Conexao estabelecida com sucesso!");
-
             try {
+                UsuariosDAO usuariosDAO = new UsuariosDAO();
+                usuariosDAO.inserirUsuario();
+
+                AdicionaisDAO adicionaisDAO = new AdicionaisDAO();
+                adicionaisDAO.inserirAdicionais();
+
+                ClientesDAO clientesDAO = new ClientesDAO();
+                clientesDAO.inserirClientes();
+
+                QuartosDAO quartosDAO = new QuartosDAO();
+                quartosDAO.inserirUsuario();
+
+                RoleDAO roleDAO = new RoleDAO();
+                roleDAO.inserirCargo();
+
+
+                System.out.println("Usuario Inserido com sucesso!");
                 con.close();
                 System.out.println("Conexao Encerrada");
             }
