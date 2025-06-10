@@ -22,9 +22,41 @@ public class QuartosDAO {
             novoQuarto.setInt(6,15);
 
             int linhaAfetada = novoQuarto.executeUpdate();
+            con.close();
             return linhaAfetada > 0;
         }catch (Exception erro){
             System.out.println("Erro ao inserir quartos! " + erro.getMessage());
+            return false;
+        }
+    }
+    public boolean removerQuartos() {
+        try{
+            Connection con = conexao.getConexao();
+            PreparedStatement removerQuartos = con.prepareStatement("DELETE FROM quartos WHERE id = ?;");
+            removerQuartos.setInt(1,1);
+            int linhaAfetada = removerQuartos.executeUpdate();
+            con.close();
+            return linhaAfetada > 0;
+        }catch (Exception erro){
+            System.out.println("Erro ao remover quartos! " + erro.getMessage());
+            return false;
+        }
+    }
+    public boolean AtualizarPedidos(){
+        try{
+            Connection con = conexao.getConexao();
+            PreparedStatement atualizarQuartos = con.prepareStatement("UPDATE quartos SET nome = ?, numero = ?, qtd_cama_casal = ?, qtd_cama_solteiro = ?, preco = ?, disponivel = ? WHERE id = ?;");
+            atualizarQuartos.setString(1,"Cama de casal");
+            atualizarQuartos.setString(2,"230");
+            atualizarQuartos.setInt(3,1);
+            atualizarQuartos.setInt(4,2);
+            atualizarQuartos.setDouble(5,1.500);
+            atualizarQuartos.setInt(6,4);
+            int linhaAfetada = atualizarQuartos.executeUpdate();
+            con.close();
+            return linhaAfetada > 0;
+        }catch (Exception erro){
+            System.out.println("Erro ao atualizar quartos! " + erro.getMessage());
             return false;
         }
     }

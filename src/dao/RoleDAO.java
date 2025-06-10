@@ -4,6 +4,7 @@ import javafx.scene.layout.BorderPane;
 import utils.Conexao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 
 public class RoleDAO {
@@ -15,9 +16,37 @@ public class RoleDAO {
             PreparedStatement newRole = con.prepareStatement("INSERT INTO roles(nome) VALUES(?);");
             newRole.setString(1, "Dono");
             int linhaAfetada = newRole.executeUpdate();
+            con.close();
             return linhaAfetada > 0;
         }catch (Exception e){
             System.out.println("Erro ao inserir role!" + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean removeRole(){
+        try{
+            Connection con = conexao.getConexao();
+            PreparedStatement RemoverRole = con.prepareStatement("DELETE FROM roles WHERE id = ?;");
+            RemoverRole.setInt(1,1);
+            int linhaAfetada = RemoverRole.executeUpdate();
+            con.close();
+            return linhaAfetada > 0;
+        }catch (Exception e){
+            System.out.println("Erro ao remover cargo! " + e.getMessage());
+            return false;
+        }
+    }
+    public boolean atualizarcargos(){
+        try{
+            Connection con = conexao.getConexao();
+            PreparedStatement atualizarCargos = con.prepareStatement("UPDATE roles SET nome = ? WHERE id = ?;");
+            atualizarCargos.setInt(1,3);
+            int linhaAfetada = atualizarCargos.executeUpdate();
+            con.close();
+            return linhaAfetada > 0;
+        }catch (Exception erro){
+            System.out.println("Erro ao atualizar cargos! " + erro.getMessage());
             return false;
         }
     }

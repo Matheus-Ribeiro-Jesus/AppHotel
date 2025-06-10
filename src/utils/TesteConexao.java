@@ -12,23 +12,29 @@ public class TesteConexao {
         if(con != null){
             System.out.println("Conexao estabelecida com sucesso!");
             try {
-                UsuariosDAO usuariosDAO = new UsuariosDAO();
-                usuariosDAO.inserirUsuario();
+//                UsuariosDAO usuariosDAO = new UsuariosDAO();
+//                usuariosDAO.inserirUsuario();
+//                System.out.println("Usuario Inserido com sucesso!");
+//
+//                AdicionaisDAO adicionaisDAO = new AdicionaisDAO();
+//                adicionaisDAO.inserirAdicionais();
+//
+//                ClientesDAO clientesDAO = new ClientesDAO();
+//                clientesDAO.inserirClientes();
+//
+//                QuartosDAO quartosDAO = new QuartosDAO();
+//                quartosDAO.inserirUsuario();
+//
+//                RoleDAO roleDAO = new RoleDAO();
+//                roleDAO.inserirCargo();
 
-                AdicionaisDAO adicionaisDAO = new AdicionaisDAO();
-                adicionaisDAO.inserirAdicionais();
-
-                ClientesDAO clientesDAO = new ClientesDAO();
-                clientesDAO.inserirClientes();
-
-                QuartosDAO quartosDAO = new QuartosDAO();
-                quartosDAO.inserirUsuario();
-
-                RoleDAO roleDAO = new RoleDAO();
-                roleDAO.inserirCargo();
+//                PedidosDAO pedidosDAO = new PedidosDAO();
+//                pedidosDAO.inserirPedidos();
 
 
-                System.out.println("Usuario Inserido com sucesso!");
+                ReservasDAO reservasDAO = new ReservasDAO();
+                reservasDAO.inserirReserva();
+
                 con.close();
                 System.out.println("Conexao Encerrada");
             }
