@@ -2,10 +2,7 @@ package dao;
 
 import utils.Conexao;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ReservasDAO {
     private Conexao conexao = new Conexao();
@@ -54,6 +51,27 @@ public class ReservasDAO {
         }catch (Exception erro){
             System.out.println("Erro ao atualizar reservas! " + erro.getMessage());
             return false;
+        }
+    }
+
+    public void pesquisarReservas() {
+        try (Connection con = conexao.getConexao();
+             PreparedStatement pesquisareservar = con.prepareStatement("SELECT pedido_id, quarto_id, adicional_id, inicio, fim FROM reservas WHERE id = ?")) {
+            pesquisareservar.setInt(1, 4);
+            pesquisareservar.setInt(2, 2);
+            pesquisareservar.setInt(3, 2);
+            try (ResultSet resultado = pesquisareservar.executeQuery()) {
+                while (resultado.next()) {
+                    int pedido_id = resultado.getInt("pedido_id");
+                    int quarto_id = resultado.getInt("quarto_id");
+                    int adicional_id = resultado.getInt("adicional_id");
+                    String inicio = resultado.getString("inicio");
+                    String fim = resultado.getString("fim");
+                    System.out.printf("Pedido ID: %d, Quarto ID: %d, Adicional ID: %d, Início: %s, Fim: %s%n", pedido_id, quarto_id, adicional_id, inicio, fim);
+                }
+            }
+        } catch (SQLException erro) {
+            System.out.println("Erro ao pesquisar reservas! " + erro.getMessage());
         }
     }
 }

@@ -2,6 +2,7 @@ package dao;
 import utils.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class UsuariosDAO {
 
@@ -55,4 +56,23 @@ public class UsuariosDAO {
         }
     }
 
+    public void pesquisarUsuarios(){
+        try{
+            Connection con = conexao.getConexao();
+            PreparedStatement buscarusuario = con.prepareStatement("SELECT nome, email, role_id FROM usuarios WHERE id = ?");
+            buscarusuario.setString(1, "Matheus");
+            buscarusuario.setString(1, "matheus@gmail.com");
+            buscarusuario.setInt(1, 1);
+            ResultSet resultado = buscarusuario.executeQuery();
+            while(resultado.next()){
+                String nome = resultado.getString("nome");
+                String email = resultado.getString("email");
+                String role_id = resultado.getString("role_id");
+                System.out.println("Nome: " + nome + " Email: " + email + " Role: " + role_id);
+            }
+            con.close();
+        }catch (Exception error){
+            System.out.println("Erro ao pesquisar usuarios! " + error.getMessage());
+        }
+    }
 }

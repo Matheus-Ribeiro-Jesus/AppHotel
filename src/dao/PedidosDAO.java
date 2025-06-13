@@ -2,9 +2,7 @@ package dao;
 
 import utils.Conexao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class PedidosDAO {
     private Conexao conexao = new Conexao();
@@ -50,4 +48,26 @@ public class PedidosDAO {
             return false;
         }
     }
+
+    public void pesquisarPedidos(){
+        try {
+            Connection con = conexao.getConexao();
+            PreparedStatement pesquisarpedidos = con.prepareStatement("SELECT pagamento, usuario_id, cliente_id WHERE id = ?;");
+            pesquisarpedidos.setString(1,  "Pix");
+            pesquisarpedidos.setInt(2, 4);
+            pesquisarpedidos.setInt(3, 2);
+            ResultSet resultado = pesquisarpedidos.executeQuery();
+
+            while (resultado.next()){
+                String nome = resultado.getString("pagamento");
+                String usuario_id = resultado.getString("usuario_id");
+                String cliente_id = resultado.getString("cliente_id");
+                System.out.println("Nome: " + nome + " Usuario: " + usuario_id + " Cliente: " + cliente_id);
+            }
+            con.close();
+        }catch (Exception error){
+            System.out.println("Erro ao pesquisarPedidos: " + error.getMessage());
+        }
+    }
+
 }

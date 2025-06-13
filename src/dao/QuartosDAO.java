@@ -5,6 +5,7 @@ import utils.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class QuartosDAO {
 
@@ -58,6 +59,29 @@ public class QuartosDAO {
         }catch (Exception erro){
             System.out.println("Erro ao atualizar quartos! " + erro.getMessage());
             return false;
+        }
+    }
+
+    public void pesquisarQuartos(){
+        try{
+            Connection con = conexao.getConexao();
+            PreparedStatement pesquisarQuartos = con.prepareStatement("SELECT nome, numero, qtd_cama_casal, qtd_cama_solteiro, preco, disponivel FROM quartos WHERE id = ?; ");
+            pesquisarQuartos.setInt(1, 2);
+
+            ResultSet resultado = pesquisarQuartos.executeQuery();
+
+            while(resultado.next()){
+                String nome = resultado.getString("Nome");
+                String numero = resultado.getString("Numero");
+                int qtd_cama_casal = resultado.getInt("qtd_cama_casal");
+                int qtd_cama_solteiro = resultado.getInt("qtd_cama_solteiro");
+                double preco = resultado.getDouble("Preço");
+                int disponiveis = resultado.getInt("Disponiveis");
+                System.out.println("Nome: " + nome + "Numero: " + numero + "qtd_cama_casal: " + qtd_cama_casal + "qtd_cama_solteiro " + qtd_cama_solteiro + "Preço: " + preco + "disponiveis: " + disponiveis);
+            }
+            con.close();
+        }catch (Exception erro){
+            System.out.println("Erro ao pesquisarQuartos! " + erro.getMessage());
         }
     }
 }

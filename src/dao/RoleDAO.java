@@ -3,9 +3,11 @@ package dao;
 import javafx.scene.layout.BorderPane;
 import utils.Conexao;
 
+import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class RoleDAO {
     private Conexao conexao = new Conexao();
@@ -48,6 +50,21 @@ public class RoleDAO {
         }catch (Exception erro){
             System.out.println("Erro ao atualizar cargos! " + erro.getMessage());
             return false;
+        }
+    }
+    public void pesquisarcargos(){
+        try {
+            Connection con = conexao.getConexao();
+            PreparedStatement pesquicargos = con.prepareStatement("SELECT nome FROM roles WHERE id = ?;");
+            pesquicargos.setString(1,"Administrador");
+            ResultSet resultado = pesquicargos.executeQuery();
+            while(resultado.next()){
+                String nome = resultado.getString("Nome");
+                System.out.println("Nome: " + nome);
+            }
+            con.close();
+        }catch (Exception erro){
+            System.out.println("Erro ao pesquisar cargos! " + erro.getMessage());
         }
     }
 }

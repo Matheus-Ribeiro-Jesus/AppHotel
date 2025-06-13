@@ -4,6 +4,7 @@ import utils.Conexao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class AdicionaisDAO {
     private Conexao conexao = new Conexao();
@@ -50,6 +51,22 @@ public class AdicionaisDAO {
         }catch (Exception erro){
             System.out.println("Erro ao atualizar adicionais! " + erro.getMessage());
             return false;
+        }
+    }
+    public void pesquisarAdicionais(){
+        try{
+            Connection con = conexao.getConexao();
+            PreparedStatement pesquisaradicionais = con.prepareStatement("SELECT adicionais nome, preco WHERE id = ?;");
+            pesquisaradicionais.setInt(1, 2);
+            ResultSet resultado = pesquisaradicionais.executeQuery();
+            while(resultado.next()){
+                String nome = resultado.getString("nome");
+                String preco = resultado.getString("Preço");
+                System.out.println("Nome: " + nome + "Preço " + preco);
+            }
+            con.close();
+        }catch (Exception erro){
+            System.out.println("Erro ao pesquisar adicionais! " + erro.getMessage());
         }
     }
 }

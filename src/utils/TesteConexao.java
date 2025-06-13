@@ -32,8 +32,9 @@ public class TesteConexao {
 //                pedidosDAO.inserirPedidos();
 
 
-                ReservasDAO reservasDAO = new ReservasDAO();
-                reservasDAO.inserirReserva();
+//                ReservasDAO reservasDAO = new ReservasDAO();
+//                reservasDAO.inserirReserva();
+
 
                 con.close();
                 System.out.println("Conexao Encerrada");
