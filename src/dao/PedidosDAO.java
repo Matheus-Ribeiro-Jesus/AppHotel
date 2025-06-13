@@ -52,7 +52,7 @@ public class PedidosDAO {
     public void pesquisarPedidos(){
         try {
             Connection con = conexao.getConexao();
-            PreparedStatement pesquisarpedidos = con.prepareStatement("SELECT pagamento, usuario_id, cliente_id WHERE id = ?;");
+            PreparedStatement pesquisarpedidos = con.prepareStatement("SELECT pagamento, usuario_id, cliente_id FROM pedidos WHERE id = ?;");
             pesquisarpedidos.setString(1,  "Pix");
             pesquisarpedidos.setInt(2, 4);
             pesquisarpedidos.setInt(3, 2);

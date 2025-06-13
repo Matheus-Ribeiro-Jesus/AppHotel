@@ -61,7 +61,7 @@ public class ClientesDAO {
     public void pesquisarClientes(){
         try {
             Connection con = conexao.getConexao();
-            PreparedStatement pesquisarclientes = con.prepareStatement("SELECT nome, cpf, telefone, email WHERE id = ?;");
+            PreparedStatement pesquisarclientes = con.prepareStatement("SELECT nome, cpf, telefone, email FROM clientes WHERE id = ?;");
             pesquisarclientes.setInt(1, 2);
             ResultSet resultado = pesquisarclientes.executeQuery();
             while (resultado.next()){

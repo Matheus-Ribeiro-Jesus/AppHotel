@@ -56,7 +56,7 @@ public class AdicionaisDAO {
     public void pesquisarAdicionais(){
         try{
             Connection con = conexao.getConexao();
-            PreparedStatement pesquisaradicionais = con.prepareStatement("SELECT adicionais nome, preco WHERE id = ?;");
+            PreparedStatement pesquisaradicionais = con.prepareStatement("SELECT adicionais nome, preco FROM adicionais WHERE id = ?;");
             pesquisaradicionais.setInt(1, 2);
             ResultSet resultado = pesquisaradicionais.executeQuery();
             while(resultado.next()){
