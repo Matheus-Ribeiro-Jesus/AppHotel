@@ -57,9 +57,7 @@ public class ReservasDAO {
     public void pesquisarReservas() {
         try (Connection con = conexao.getConexao();
              PreparedStatement pesquisareservar = con.prepareStatement("SELECT pedido_id, quarto_id, adicional_id, inicio, fim FROM reservas WHERE id = ?")) {
-            pesquisareservar.setInt(1, 4);
-            pesquisareservar.setInt(2, 2);
-            pesquisareservar.setInt(3, 2);
+            pesquisareservar.setInt(1, 2);
             try (ResultSet resultado = pesquisareservar.executeQuery()) {
                 while (resultado.next()) {
                     int pedido_id = resultado.getInt("pedido_id");

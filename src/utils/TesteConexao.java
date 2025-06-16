@@ -31,9 +31,13 @@ public class TesteConexao {
 //                PedidosDAO pedidosDAO = new PedidosDAO();
 //                pedidosDAO.inserirPedidos();
 
+                PedidosDAO pedidosDAO = new PedidosDAO();
+                pedidosDAO.pesquisarPedidos();
+
 
 //                ReservasDAO reservasDAO = new ReservasDAO();
 //                reservasDAO.inserirReserva();
+
 
 
                 con.close();

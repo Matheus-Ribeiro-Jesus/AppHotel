@@ -60,8 +60,6 @@ public class UsuariosDAO {
         try{
             Connection con = conexao.getConexao();
             PreparedStatement buscarusuario = con.prepareStatement("SELECT nome, email, role_id FROM usuarios WHERE id = ?");
-            buscarusuario.setString(1, "Matheus");
-            buscarusuario.setString(1, "matheus@gmail.com");
             buscarusuario.setInt(1, 1);
             ResultSet resultado = buscarusuario.executeQuery();
             while(resultado.next()){

@@ -53,16 +53,16 @@ public class PedidosDAO {
         try {
             Connection con = conexao.getConexao();
             PreparedStatement pesquisarpedidos = con.prepareStatement("SELECT pagamento, usuario_id, cliente_id FROM pedidos WHERE id = ?;");
-            pesquisarpedidos.setString(1,  "Pix");
-            pesquisarpedidos.setInt(2, 4);
-            pesquisarpedidos.setInt(3, 2);
+            pesquisarpedidos.setInt(1,  4);
             ResultSet resultado = pesquisarpedidos.executeQuery();
 
             while (resultado.next()){
-                String nome = resultado.getString("pagamento");
+                String pagamento = resultado.getString("pagamento");
                 String usuario_id = resultado.getString("usuario_id");
                 String cliente_id = resultado.getString("cliente_id");
-                System.out.println("Nome: " + nome + " Usuario: " + usuario_id + " Cliente: " + cliente_id);
+                System.out.println("Metodo de pagamento: " + pagamento);
+                System.out.println("Usuario: " + usuario_id);
+                System.out.println("Cliente: " + cliente_id);
             }
             con.close();
         }catch (Exception error){
