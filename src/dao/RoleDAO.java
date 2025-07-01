@@ -1,11 +1,9 @@
 package dao;
 
-import javafx.scene.layout.BorderPane;
+import model.Role;
 import utils.Conexao;
 
-import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 

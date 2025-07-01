@@ -1,5 +1,6 @@
 package dao;
 
+import model.Pedidos;
 import utils.Conexao;
 
 import java.sql.*;
@@ -21,6 +22,7 @@ public class PedidosDAO {
         return false;
         }
     }
+
     public boolean deletarPedidos(){
         try {
             Connection con = conexao.getConexao();

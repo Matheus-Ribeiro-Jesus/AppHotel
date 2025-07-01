@@ -1,4 +1,5 @@
 package dao;
+import model.Usuario;
 import utils.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,14 +40,34 @@ public class UsuariosDAO {
         }
     }
 
+    public boolean autenticarUsuario(Usuario usuario){
+        try{
+            Connection con = conexao.getConexao();
+            PreparedStatement autenticarusuario = con.prepareStatement("SELECT nome FROM usuarios WHERE email = ? AND senha = md5(?);");
+            autenticarusuario.setString(1, usuario.getEmail());
+            autenticarusuario.setString(2, usuario.getSenha());
+            ResultSet resultado = autenticarusuario.executeQuery();
+
+            boolean autenticado = resultado.next();
+                String nome = resultado.getString("nome");
+                System.out.println("Olá, seja bem-vindo " + nome);
+
+            con.close();
+            return autenticado;
+        }catch (Exception e){
+            System.out.println("Erro ao autenticar usuario! " + e.getMessage());
+            return false;
+        }
+    }
+
     public boolean atualizarUsuarios(){
         try{
             Connection con = conexao.getConexao();
             PreparedStatement atualizarUsuarios = con.prepareStatement("UPDATE usuarios SET nome = ?, email = ?, senha = md5(?), role_id = ? WHERE id = ?;");
             atualizarUsuarios.setString(1, "Matheus Ribeiro");
-            atualizarUsuarios.setString(1, "matheusribeiro2@gmail.com");
-            atualizarUsuarios.setString(1, "1234");
-            atualizarUsuarios.setInt(1, 2);
+            atualizarUsuarios.setString(2, "matheusribeiro2@gmail.com");
+            atualizarUsuarios.setString(3, "1234");
+            atualizarUsuarios.setInt(4, 2);
             int linhaAfetada = atualizarUsuarios.executeUpdate();
             con.close();
             return linhaAfetada > 0;
