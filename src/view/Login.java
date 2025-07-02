@@ -136,7 +136,13 @@ public class Login extends Application {
             UsuariosController usuariosController = new UsuariosController();
             boolean loginSucesso = usuariosController.verificarCredenciais(email, senha);
             if(loginSucesso){
+                CadCliente cadCliente = new CadCliente();
                 System.out.println("Login efetuado com sucesso");
+                try{
+                    cadCliente.start(stage);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }else{
                 System.out.println("Login invalido!");
             }
