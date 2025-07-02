@@ -51,7 +51,6 @@ public class UsuariosDAO {
             boolean autenticado = resultado.next();
                 String nome = resultado.getString("nome");
                 System.out.println("Olá, seja bem-vindo " + nome);
-
             con.close();
             return autenticado;
         }catch (Exception e){

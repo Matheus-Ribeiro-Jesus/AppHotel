@@ -1,7 +1,6 @@
 package utils;
 
 import controller.UsuariosController;
-import dao.*;
 import model.Usuario;
 
 import java.sql.Connection;

@@ -16,7 +16,6 @@ public class UsuariosController {
     /* Metodo para verificar se os parametros necessarios para autenticação estao presente ou seja nao podem ser vazios ou nulos
     * se estiverem presentes um objeto de usuario é inicializado como uma instancia */
 
-
     public boolean verificarCredenciais(String email, String senha) {
         if (email == null || email.isEmpty() || senha == null || senha.isEmpty()) {
             return false;

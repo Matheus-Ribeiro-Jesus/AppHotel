@@ -1,5 +1,6 @@
 package view;
 
+import controller.UsuariosController;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -116,8 +117,6 @@ public class Login extends Application {
             }
         });
 
-
-
         Button btnLogin = new Button("Login");
         btnLogin.setStyle("-fx-font-size: 14px; " +
                 "-fx-background-radius: 30; " +
@@ -131,8 +130,19 @@ public class Login extends Application {
                 "-fx-border-width: 1;");
         btnLogin.setTranslateX(-14);
 
-        // Criando o GridPane para o formulário
+        btnLogin.setOnAction(evento -> {
+             String email = campoEmail.getText();
+             String senha = campoSenha.isVisible() ? campoSenha.getText() : txtSenha.getText();
+            UsuariosController usuariosController = new UsuariosController();
+            boolean loginSucesso = usuariosController.verificarCredenciais(email, senha);
+            if(loginSucesso){
+                System.out.println("Login efetuado com sucesso");
+            }else{
+                System.out.println("Login invalido!");
+            }
+        });
 
+        // Criando o GridPane para o formulário
         GridPane formGrid = new GridPane();
         formGrid.add(campoEmail, 1, 0);
         formGrid.add(campoSenha, 1, 1);
