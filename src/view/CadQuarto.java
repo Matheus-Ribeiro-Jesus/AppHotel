@@ -1,5 +1,6 @@
 package view;
 
+import controller.QuartosController;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -93,9 +94,15 @@ public class CadQuarto extends Application {
             }else{
                 isDisponivel = false;
             }
+            QuartosController quartosController = new QuartosController();
+            boolean sucessoinsercao = quartosController.verificarinfoQuartos(nome, numero, camaCasal, solteiro, preco, isDisponivel);
+            if(sucessoinsercao){
+                System.out.println("Quarto cadastrado com sucesso.");
+            }else{
+                System.out.println("Não foi possivel cadastrar o quarto!");
+            }
         });
-
-
+        
         VBox layout = new VBox(10, tituloBox, formgrid, painelBottons);
         layout.setAlignment(Pos.CENTER);
         mainPane.setCenter(layout);

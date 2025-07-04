@@ -9,8 +9,8 @@ public class QuartosController {
     public QuartosController() {
         this.quartosDAO = new QuartosDAO();
     }
-    public void verificarinfoQuartos(String nome, String numero, int qtdCamaCasal, int qtdCamaSolteiro, double preco, boolean disponiveis) {
-        Quarto quartos = new Quarto(nome, numero, qtdCamaCasal, qtdCamaSolteiro, preco, disponiveis);
-        quartosDAO.inserirQuartos(quartos);
+    public boolean verificarinfoQuartos(String nome, String numero, int qtdCamaCasal, int qtdCamaSolteiro, double preco, boolean disponiveis) {
+        Quarto quarto = new Quarto(nome, numero, qtdCamaCasal, qtdCamaSolteiro, preco, disponiveis);
+        return quartosDAO.inserirQuartos(quarto);
     }
 }
