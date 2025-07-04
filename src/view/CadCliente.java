@@ -2,7 +2,6 @@ package view;
 import javafx.application.Application; // Ciclo de vida da aplicação (init() start () stop() => Launch())
 import javafx.geometry.Pos;
 import javafx.scene.Scene; // Classe Scene: container que contem os layouts da aplicação
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

@@ -56,7 +56,7 @@ public class CadQuarto extends Application {
 
         Label lblDisponivel = new Label("Disponivel: ");
         ComboBox<String> campoDisponivel = new ComboBox<>();
-        campoDisponivel.getItems().addAll("Sim", "Não");
+        campoDisponivel.getItems().addAll("Disponivel", "Indisponivel");
 
         GridPane formgrid = new GridPane();
 
@@ -73,10 +73,28 @@ public class CadQuarto extends Application {
         formgrid.add(lblDisponivel, 0, 5);
         formgrid.add(campoDisponivel, 1, 5);
 
-
         formgrid.setHgap(10);
         formgrid.setVgap(10);
         formgrid.setAlignment(Pos.CENTER);
+
+
+        painelBottons.btnCadastrar.setOnAction(e -> {
+            String nome = campoNome.getText();
+            String numero = campoNumero.getText();
+            double preco = Double.parseDouble(campoPreco.getText());
+            int camaCasal = qtdCamaCasal.getValue();
+            int solteiro = qtdCamaSolteiro.getValue();
+            String disponivel = (String) campoDisponivel.getSelectionModel().getSelectedItem();
+
+            Boolean isDisponivel;
+
+            if(disponivel.equals("Disponivel")){
+                isDisponivel = true;
+            }else{
+                isDisponivel = false;
+            }
+        });
+
 
         VBox layout = new VBox(10, tituloBox, formgrid, painelBottons);
         layout.setAlignment(Pos.CENTER);

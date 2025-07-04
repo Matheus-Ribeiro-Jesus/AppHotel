@@ -40,7 +40,7 @@ public class Quarto {
         this.numero = numero;
     }
 
-    public double getQtd_cama_casal() {
+    public int getQtd_cama_casal() {
         return qtd_cama_casal;
     }
 
@@ -48,7 +48,7 @@ public class Quarto {
         this.qtd_cama_casal = qtd_cama_casal;
     }
 
-    public double getQtd_cama_solteiro() {
+    public int getQtd_cama_solteiro() {
         return qtd_cama_solteiro;
     }
 

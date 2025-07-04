@@ -8,6 +8,10 @@ import javafx.scene.layout.HBox;
 
 public class PainelBottons extends HBox {
 
+        public Button btnCadastrar = new Button("Cadastrar");
+        public Button btnAtualizar = new Button("Atualizar");
+        public Button btnExcluir = new Button("Excluir");
+
     public PainelBottons() {
 
         Image iconBtnCad = new Image(getClass().getResourceAsStream("/view/resources/img/plus48px.png"));
@@ -29,14 +33,6 @@ public class PainelBottons extends HBox {
         iconDel.setFitHeight(20);
 
         //Area dos Botões
-        Button btnCadastrar = new Button("Cadastrar", icon);
-        btnCadastrar.setStyle("-fx-background-color: transparent; -fx-font-weight: bold");
-
-        Button btnAtualizar = new Button("Atualizar", iconUp);
-        btnAtualizar.setStyle("-fx-background-color: transparent; -fx-font-weight: bold");
-
-        Button btnExcluir = new Button("Excluir", iconDel);
-        btnExcluir.setStyle("-fx-background-color: transparent; -fx-font-weight: bold");
 
         String styleButton = "-fx-background-color: transparent; " + "-fx-border-color: transparent; " + "-fx-graphic-text-gap: 10px; -fx-alignment: center;" + "-fx-cursor: hand;";
 
@@ -56,9 +52,6 @@ public class PainelBottons extends HBox {
         btnExcluir.setOnMouseEntered(evento ->
                 btnExcluir.setStyle(styleButton.replace("transparent", "#FF6347")));
         btnExcluir.setOnMouseExited(evento -> btnExcluir.setStyle(styleButton));
-
-
-
 
         btnCadastrar.setGraphic(icon);
         btnAtualizar.setGraphic(iconUp);

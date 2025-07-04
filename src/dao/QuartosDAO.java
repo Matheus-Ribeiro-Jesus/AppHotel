@@ -1,8 +1,7 @@
 package dao;
 
-import model.Usuario;
+import model.Quarto;
 import utils.Conexao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,16 +10,16 @@ public class QuartosDAO {
 
     private Conexao conexao = new Conexao();
 
-    public boolean inserirUsuario() {
+    public boolean inserirQuartos(Quarto quarto) {
         try{
             Connection con = conexao.getConexao();
             PreparedStatement novoQuarto = con.prepareStatement("INSERT INTO quartos(nome, numero, qtd_cama_casal, qtd_cama_solteiro, preco, disponivel) VALUES(?, ?, ?, ?, ?, ?);");
-            novoQuarto.setString(1,"Cama de casal");
-            novoQuarto.setString(2,"201");
-            novoQuarto.setInt(3,1);
-            novoQuarto.setInt(4,10);
-            novoQuarto.setDouble(5,1.500);
-            novoQuarto.setInt(6,15);
+            novoQuarto.setString(1,quarto.getNome());
+            novoQuarto.setString(2,quarto.getNumero());
+            novoQuarto.setInt(3, quarto.getQtd_cama_casal());
+            novoQuarto.setInt(4,quarto.getQtd_cama_solteiro());
+            novoQuarto.setDouble(5, quarto.getPreco());
+            novoQuarto.setBoolean(6, quarto.isDisponivel());
 
             int linhaAfetada = novoQuarto.executeUpdate();
             con.close();
